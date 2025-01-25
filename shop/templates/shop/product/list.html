@@ -1,35 +1,105 @@
-{% extends "shop/base.html" %}
+{% extends 'shop/base.html' %}
 {% load static %}
-{% block title %}
-{% if category %}{{ category.name }}{% else %}Products{% endif %}
-{% endblock %}
+
+{% block title %}Product List{% endblock %}
+
 {% block content %}
-<div id="sidebar">
-    <h3>Categories</h3>
-    <ul>
-        <li {% if not category %}class="selected" {% endif %}>
-            <a href="{% url " shop:product_list" %}">All</a>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'img/carousel/GT3.jpg' %}" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/carousel/Mustang.jpg' %}" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/carousel/Supra.jpg' %}" class="d-block w-100" alt="Slide 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="container mt-4">
+    <ul class="nav nav-pills mt-5 mb-5 justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link {% if not category %}active{% endif %}" href="{% url 'shop:product_list' %}">All</a>
         </li>
         {% for c in categories %}
-        <li {% if category.slug==c.slug %}class="selected" {% endif %}>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        <li class="nav-item">
+            <a class="nav-link {% if category and category.slug == c.slug %}active{% endif %}" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
         </li>
         {% endfor %}
     </ul>
-</div>
-<div id="main" class="product-list">
-    <h1>{% if category %}{{ category.name }}{% else %}Products
-        {% endif %}</h1>
-    {% for product in products %}
-    <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-            <img src="{% if product.image %} {{ product.image.url }} {% else %} {%static " img/no_image.png" %} {% endif
-                %} ">
-    </a>
-    <a href=" {{ product.get_absolute_url }} "> {{ product.name }} </a>
-    <br>
-    Rs:{{ product.price }}
+
+    <hr class="m-5">
+
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3">
+        {% for product in products %}
+        <div class="col mb-4">
+            <div class="card h-100 border-0 shadow-sm ">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body text-center">
+                    <h6 class="card-title">{{ product.name }}</h6>
+                    <p class="card-text">Price: Rs{{ product.price }}</p>
+                    <p class="card-text {% if product.available %}text-success{% else %}text-danger{% endif %}">
+                        {% if product.available %}Available{% else %}Out of Stock{% endif %}
+                    </p>
+                    <a href="#" class="btn btn-dark btn-sm">Get It Now</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No products available in this category.</p>
+        {% endfor %}
     </div>
-    {% endfor %}
- </div>
+</div>
+
+<style>
+    .nav-pills .nav-link {
+        color: black;
+        margin: 0 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-dark {
+        background-color: black;
+        color: white;
+        border: none;
+    }
+
+    .btn-dark:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+    }
+</style>
 {% endblock %}
