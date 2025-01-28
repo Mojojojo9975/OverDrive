@@ -17,6 +17,7 @@ def cart_add(request, product_id):
         cart.add(
             product=product,
             quantity=cd['quantity'],
+            size=cd['size'],
             override_quantity=cd['override']
         )
     return redirect('cart:cart_detail')

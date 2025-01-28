@@ -34,7 +34,7 @@ Your Shopping Cart
                                 </a>
                             </td>
                             <td>{{ product.name }}</td>
-                            <td> Add Size Here</td>
+                            <td> {{ item.size }} </td>
                             <td> 
                                 <form class="d-flex flex-column flex-sm-row align-items-center gap-3" action="{% url 'cart:cart_add' product.id %}" method="post">
                                     {{ item.update_quantity_form.quantity }}

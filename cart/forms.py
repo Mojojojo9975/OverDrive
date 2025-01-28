@@ -1,8 +1,21 @@
 from django import forms
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 51)]
+
+SIZE_CHOICES = [
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+        ('XL', 'Extra Large'),
+    ]
 
 class CartAddProductForm(forms.Form):
+
+    size = forms.ChoiceField(
+        choices=SIZE_CHOICES,
+        widget=forms.RadioSelect,
+        required=True,
+    )
+    
     quantity = forms.IntegerField(
         min_value=1,
         max_value=50,
