@@ -1,62 +1,37 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}OVERDRIVE{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .navbar {
-            background-color: white;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: black;
-        }
-        .navbar-nav .nav-link {
-            color: black;
-            margin: 0 0.5rem;
-            transition: color 0.3s;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #555;
-        }
-        .nav-icons svg {
-            width: 24px;
-            height: 24px;
-            color: black;
-            margin-left: 1rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .nav-icons svg:hover {
-            color: #555;
-        }
-    </style>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
+    
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">OVERDRIVE</a>
+            <a class="navbar-brand" href=" {% url 'shop:product_list' %} ">OVERDRIVE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item nav-icons">
-                        <a class="nav-link" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a5 5 0 0 0-4.546 2.916C3.74 13.47 5.522 14 8 14s4.26-.53 4.546-2.084A5 5 0 0 0 8 9z"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="nav-item nav-icons">
-                        <a class="nav-link" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 5H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zM3.14 6l1.25 6.5H13l1.25-6.5H3.14zM5 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm5.5-2a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
-                            </svg>
+                    <li class="nav-item nav-icons d-flex align-items-center position-relative">
+                        <a class="nav-link" href="{% url "cart:cart_detail" %}">
+                            <img  width="25" height="25" src="https://img.icons8.com/ios-glyphs/30/shopping-cart--v1.png" alt="shopping-cart--v1"/>
+                            {% with total_items=cart|length %}
+                                {% if total_items > 0 %}
+                                    
+                                    
+
+                            <span class="mb-0">({{ total_items }} item{{ total_items|pluralize }})</span> 
+
+                                {% else %}
+                                    Your cart is empty.
+                                {% endif %}
+                                {% endwith %}
                         </a>
                     </li>
                 </ul>
@@ -64,7 +39,6 @@
         </div>
     </nav>
     
-
     <main>
         {% block content %}
         <!-- Content will be replaced in child templates -->

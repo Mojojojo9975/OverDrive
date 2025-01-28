@@ -56,50 +56,18 @@
                     <p class="card-text {% if product.available %}text-success{% else %}text-danger{% endif %}">
                         {% if product.available %}Available{% else %}Out of Stock{% endif %}
                     </p>
-                    <a href="#" class="btn btn-dark btn-sm">Get It Now</a>
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-dark btn-sm">Add to Cart</a>
                 </div>
             </div>
         </div>
         {% empty %}
-        <p class="text-center">No products available in this category.</p>
+        <h1 class="coming-soon pb-5"> Coming Soon!</h1>
         {% endfor %}
     </div>
 </div>
 
-<style>
-    .nav-pills .nav-link {
-        color: black;
-        margin: 0 5px;
-        transition: background-color 0.3s, color 0.3s;
-    }
 
-    .nav-pills .nav-link.active,
-    .nav-pills .nav-link:hover {
-        background-color: black;
-        color: white;
-    }
 
-    .card {
-        border-radius: 10px;
-        overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
 
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
 
-    .btn-dark {
-        background-color: black;
-        color: white;
-        border: none;
-    }
-
-    .btn-dark:hover {
-        background-color: white;
-        color: black;
-        border: 1px solid black;
-    }
-</style>
 {% endblock %}

@@ -1,0 +1,158 @@
+
+    .coming-soon{
+        position: absolute;
+        left: 45vw
+    }
+    h1 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .cart {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .img-thumbnail {
+        display: block;
+        margin: auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn {
+        border-radius: 5px;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-danger {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+
+    .btn-add-to-cart {
+        background-color:rgb(13, 17, 13); 
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-add-to-cart:hover {
+        background-color:rgb(22, 44, 22); /* Slightly darker green on hover */
+        color: white
+    }
+
+    .nav-pills .nav-link {
+        color: black;
+        margin: 0 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-dark {
+        background-color: black;
+        color: white;
+        border: none;
+    }
+
+    .btn-dark:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+    }
+
+    .navbar {
+        background-color: white;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: black;
+    }
+    .navbar-nav .nav-link {
+        color: black;
+        margin: 0 0.5rem;
+        transition: color 0.3s;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #555;
+    }
+    .nav-icons svg {
+        width: 24px;
+        height: 24px;
+        color: black;
+        margin-left: 1rem;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    .nav-icons svg:hover {
+        color: #555;
+    }
+
+    @media (max-width: 768px) {
+        /* Adjust font size and padding for better readability on small screens */
+        .cart td, .cart th {
+            padding: 8px;
+            font-size: 0.9rem;
+        }
+    
+        .cart img {
+            max-width: 80px; /* Adjust image size for small screens */
+        }
+    
+        /* Stack the rows vertically with better spacing for smaller screens */
+        .cart td, .cart th {
+            display: block;
+            text-align: left;
+        }
+    
+        .cart td {
+            margin-bottom: 10px;
+        }
+    
+        /* Adjust buttons for small screens */
+        .btn-sm {
+            font-size: 0.8rem;
+        }
+    }
+
