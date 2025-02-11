@@ -36,12 +36,16 @@ Your Shopping Cart
                             <td>{{ product.name }}</td>
                             <td> {{ item.size }} </td>
                             <td> 
-                                <form class="d-flex flex-column flex-sm-row align-items-center gap-3" action="{% url 'cart:cart_add' product.id %}" method="post">
-                                    {{ item.update_quantity_form.quantity }}
+                                <form class="d-flex align-items-center justify-content-center gap-5"
+                                    action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    <div style="width: 60px;"> 
+                                        {{ item.update_quantity_form.quantity }}
+                                    </div>
                                     {{ item.update_quantity_form.override }}
                                     <input type="submit" value="Update" class="btn btn-success btn-sm">
                                     {% csrf_token %}
                                 </form>
+                                
                             </td>
                             <td>
                                 <form action="{% url 'cart:cart_remove' product.id %}" method="post">
@@ -49,15 +53,15 @@ Your Shopping Cart
                                     {% csrf_token %}
                                 </form>
                             </td>
-                            <td class="num">pkr {{ item.price }}</td>
-                            <td class="num">pkr {{ item.total_price }}</td>
+                            <td class="num"><span style="color: green;">PKR</span> {{ item.price }}</td>
+                            <td class="num"><span style="color: green;">PKR</span> {{ item.total_price }}</td>
                         </tr>
                     {% endwith %}
                 {% endfor %}
 
                 <tr class="table-info font-weight-bold">
                     <td colspan="6" class="text-end">Total:</td>
-                    <td colspan="1" class="num">pkr {{ cart.get_total_price }}</td>
+                    <td colspan="1" class="num"><span style="color: green;">PKR</span> {{ cart.get_total_price }}</td>
                 </tr>
             </tbody>
         </table>
@@ -65,7 +69,7 @@ Your Shopping Cart
 
     <div class="d-flex justify-content-between mt-4 mb-5">
         <a href="{% url 'shop:product_list' %}" class="btn btn-outline-secondary">Continue Shopping</a>
-        <a href="#" class="btn btn-primary">Checkout</a>
+        <a href="{% url "orders:order_create" %}" class="btn btn-primary">Checkout</a>
     </div>
 </div>
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 # Create your models here.
 class Order(models.Model):
@@ -7,10 +8,25 @@ class Order(models.Model):
     email = models.EmailField()
     phone_number = models.CharField(
         max_length=15,
-        help_text="Enter a valid phone number including country code (e.g., +1234567890)."
+        validators=[
+            RegexValidator(
+                regex=r'^\+?1?\d{9,15}$',  # Allows optional "+" and 9-15 digits
+                message="Enter a valid phone number (e.g., +1234567890 or 0123456789)."
+            )
+        ]
+        
     )
     address = models.CharField(max_length=250)
-    postal_code = models.CharField(max_length=20)
+    
+    postal_code = models.CharField(
+        max_length=10,  # Adjust based on country requirements
+        validators=[
+            RegexValidator(
+                regex=r'^\d+$',
+                message="Enter a valid postal code ."
+            )
+        ])
+    
     city = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

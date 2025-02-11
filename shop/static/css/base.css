@@ -1,4 +1,157 @@
 
+ /* Thank You Page */
+.thank-you-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.thank-you-container p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.order-number {
+    font-size: 1.4rem;
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.thank-you-actions {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-continue {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 2px solid #333;
+}
+
+.btn-continue:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-view-order {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.btn-view-order:hover {
+    background-color: #444;
+}
+
+ 
+ /* Checkout*/
+ 
+
+/* Checkout section container */
+.order-info {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the order list */
+.order-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.order-info li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style product images */
+.order-info img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+/* Layout for product details */
+.order-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Total price styling */
+.order-info p {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Modernized form styling */
+.order-form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-form input,
+.order-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Smaller, black Place Order button */
+.order-form input[type="submit"] {
+    background: black;
+    color: white;
+    padding: 8px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.order-form input[type="submit"]:hover {
+    background: #333;
+}
+
+
+
     .coming-soon{
         position: absolute;
         left: 45vw
@@ -130,29 +283,33 @@
     }
 
     @media (max-width: 768px) {
-        /* Adjust font size and padding for better readability on small screens */
+        /* Make the table horizontally scrollable */
+        .table-responsive {
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+    
+        /* Reduce padding and font size */
         .cart td, .cart th {
-            padding: 8px;
+            padding: 6px;
             font-size: 0.9rem;
         }
     
+        /* Adjust image size */
         .cart img {
-            max-width: 80px; /* Adjust image size for small screens */
+            max-width: 70px;
+            height: auto;
         }
     
-        /* Stack the rows vertically with better spacing for smaller screens */
-        .cart td, .cart th {
-            display: block;
-            text-align: left;
-        }
-    
-        .cart td {
-            margin-bottom: 10px;
-        }
-    
-        /* Adjust buttons for small screens */
+        /* Adjust button sizes */
         .btn-sm {
             font-size: 0.8rem;
+            padding: 5px 10px;
+        }
+    
+        /* Align total row text properly */
+        .cart .table-info td {
+            text-align: right;
         }
     }
-

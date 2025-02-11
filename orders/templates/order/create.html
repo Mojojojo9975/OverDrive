@@ -1,0 +1,47 @@
+{% extends "shop/base.html" %}
+{% block title %} Checkout {% endblock %}
+
+{% block content %}
+<h1 class='my-4 text-center'>Checkout</h1>
+
+<!-- Order Summary -->
+<div class="order-info">
+    <h3>Your Order</h3>
+    <ul>
+        {% for item in cart %}
+        <li>
+            <div class="order-item">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                <div>
+                    <strong>{{ item.quantity }}x {{ item.product.name }}</strong>
+                </div>
+            </div>
+            <span>Pkr: {{ item.total_price }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Total: Pkr: {{ cart.get_total_price }}</p>
+</div>
+
+<!-- Order Form -->
+<form method="post" class="order-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Display error messages -->
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|title }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <p><input type="submit" value="Place Order"></p>
+</form>
+
+{% endblock %}

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 
@@ -131,7 +132,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #****************************************** Custom Settings ******************************************
 
+from decouple import config
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
+
+
+# Email server configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'overdrivecustoms.pk@gmail.com'
+EMAIL_HOST_PASSWORD = config('APP_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Noreply@Overdrive.com'
+
+JAZZCASH_MERCHANT_ID = config('JAZZCASH_MERCHANT_ID')
+JAZZCASH_PASSWORD= config('JAZZCASH_PASSWORD')
+JAZZCASH_INTEGRITY_SALT=config('JAZZCASH_INTEGRITY_SALT')
